@@ -8,25 +8,29 @@ int main()
 {
 	List sentence;
 
-	/*string *the = "the";
-	string quick = "quick";
-	string brown = "brown";
-	string fox = "fox";
-	string jumps = "jumps";*/
-
 	sentence.add("The");
 	sentence.add("quick");
 	sentence.add("brown");
 	sentence.add("fox");
 	sentence.add("jumps");
+	sentence.add("over");
+	sentence.add("the");
+	sentence.add("lazy");
+	sentence.add("dog");
 
+	cout << "---List---" << endl;
 	sentence.printList();
-	cout << "---------" << endl;
 
+	cout << "\n---List in Reverse (Iterative)---" << endl;
 	sentence.printReverseIterative();
-	cout << "---------" << endl;
-	
+
+	cout << "\n---List in Reverse (Recursive)---" << endl;
 	sentence.printReverseRecursive(sentence.getHead());
+	
+	cout << "\n---Deep Copy---" << endl;
+	List deepCopy(sentence);
+	deepCopy.printList();
+
 	system("pause");
 
 

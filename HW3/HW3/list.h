@@ -23,6 +23,7 @@ private:
 	Node *tail; // assigns the node as the tail of the doubly linked list
 public:
 	List();
+	List(const List &copyList);
 	void add(string word); // adds a node to the linked list with a student object in the node
 	void printList(); // prints the linked list
 	void printReverseIterative();

@@ -25,6 +25,19 @@ List::List() //Constructor that sets the head and tail to null
 	head = NULL;
 	tail = NULL;
 }
+List::List(const List &original)
+{
+	string word = original.head->getWord();
+	Node *copy = new Node(word);
+	Node *current = original.head;
+	head = copy;
+	while (current->getNext() != NULL)
+	{
+		current = current->getNext();
+		add(current->getWord());
+	}
+	current = tail;
+}
 
 void List::add(string word) // Functions that adds a node to the linked list. If the lnked list is empty, the node is set to the head and tail.
 {
