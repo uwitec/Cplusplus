@@ -49,7 +49,6 @@ void List::addNode(Student* number) // Functions that adds a node to the linked 
 	}
 	newNode = NULL;  // sets the new node to null
 	delete newNode; // deletes the allocated memory
-
 }
 
 void List::printList() // Prints a list of the elements of the linked list

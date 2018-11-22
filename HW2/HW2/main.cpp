@@ -19,7 +19,7 @@ int main()
 {
 
 	// Creates students object with id number and name
-	Student a(18001, "wilbert");
+	Student a(18023, "wilbert");
 	Student b(18009, "david");
 	Student c(18002, "eric");
 	Student d(18008, "lance");
@@ -29,8 +29,8 @@ int main()
 	Student h(18006, "alyssa");
 	Student i(18041, "janelle");
 	Student j(18019, "christian");
-	Student k(17956, "laurence");
-	Student l(18321, "christina");
+	Student k(18055, "laurence");
+	Student l(18001, "christina");
 
 
 

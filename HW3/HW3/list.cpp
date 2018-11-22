@@ -1,16 +1,18 @@
 /*
- * CSS501 HW #2: Searching and Sorting
+ * CSS501 HW #3: Searching and Sorting
  * Wilbert Lim Sible
  * wsible@uw.edu
- * 2018/10/14 - fall quarter
+ * 2018/10/21 - fall quarter
  *
- * This is the list class that creates the doubly linked list. The functions allow the user to add a node, print the list, sort the list
- * in ascending and descending order, and to search the list for a specific student id.
+ * This is the list class that creates the singly linked list. This function creates the singly linked list and adds the 
+ * data into that list. It has a deep copy constructor that copies the all the elements of the linked list into a new list.
+ * It also has the helper functions getCount to count the elements of a linked list, and getHead to get the private variable head.
+ * The list class also has the printRevereseIterative and printReverseRecursive functions that prints the linked list backwards
+ * using loops and recursion respectively.
  *
- * sortAscending - Bubble sort - O(n^2)
- * sortDescending - Bubble sort - O(n^2)
- * search - List traversal - O(n)
- *
+ * Copy Constructor - O(n)
+ * Iterative solution - O(n^2)
+ * Recursive solution - O(n)
  *
  */
 #include <iostream>
@@ -25,18 +27,21 @@ List::List() //Constructor that sets the head and tail to null
 	head = NULL;
 	tail = NULL;
 }
-List::List(const List &original)
+List::List(const List &original) // Copy constructor that deep copies the original Linked List
 {
-	string word = original.head->getWord();
-	Node *copy = new Node(word);
-	Node *current = original.head;
-	head = copy;
-	while (current->getNext() != NULL)
+	Node *copy = new Node(original.head->getWord()); // Creates a new node with the original list head's word as the parameter
+	Node *current = original.head; // Sets a pointer current as the original's head
+	head = copy; // Sets the head of the new list to node copy
+	while (current->getNext() != NULL) // Checks so that the pointer does not go beyond the original's linked list (nullPtrException handle)
 	{
-		current = current->getNext();
-		add(current->getWord());
+		current = current->getNext(); // Sets the current to the next node
+		Node *newNode = new Node(current->getWord());
+		copy->setNext(newNode);
+		copy = copy->getNext();
+		tail = newNode;
+		
 	}
-	current = tail;
+	
 }
 
 void List::add(string word) // Functions that adds a node to the linked list. If the lnked list is empty, the node is set to the head and tail.
@@ -45,11 +50,7 @@ void List::add(string word) // Functions that adds a node to the linked list. If
 
 	if (head != NULL) // This means that there is an existing list already made
 	{
-		Node* current = head; // Initializes a node pointer named current to the head
-		while (current->getNext() != NULL) // checks if the next node is not null (looks for the end of the linked list)
-		{
-			current = current->getNext(); // traverses the next node
-		}
+		Node* current = tail; // Initializes a node pointer named current to the head
 		current->setNext(newNode); //Once at the end of the list, this sets the current pointer to newNode
 		tail = newNode; // sets the tail to a new node
 
@@ -74,31 +75,32 @@ void List::printList() // Prints a list of the elements of the linked list
 	}
 }
 
-void List::printReverseIterative()
+void List::printReverseIterative() // prints the string in reverse using the iterative solution
 {
 	Node *current = head; // Initializes the current pointer and sets it to the head
-	Node *temp = head;
 	
-	for (int i = 0; i < getCount(); i++) {
-		for (int j = 0; j < getCount() - 1 - i; j++)
+	for (int i = 0; i < getCount(); i++) // For loop that counts how many times the loop will go through the list
+	{
+		for (int j = 0; j < getCount() - 1 - i; j++) // For loop that traverses the linked list
 		{
-			current = current->getNext();
+			current = current->getNext(); // Sets the current pointer to the next pointer
 		}
-		cout << current->getWord() << endl;
-		current = head;
+		cout << current->getWord() << endl; // Prints out the value that the current pointer is pointing at
+		current = head; // Sets the current pointer back to head
 	}
 }
 
-void List::printReverseRecursive(Node *current)
+void List::printReverseRecursive(Node *current) // Prints the strings in reverse using the recursive solution
 {
-	if (current != NULL)
+	if (current != NULL) // Checks if there is still an element in the current pointer
 	{
-		printReverseRecursive(current->getNext());
-		cout << current->getWord() << endl;
+		printReverseRecursive(current->getNext()); // Recursively calls the function and adds to the stack
+		cout << current->getWord() << endl; // Prints all of the elements in the stack
 	}
 	
 }
-Node* List::getHead()
+
+Node* List::getHead() // head getter
 {
 	return head;
 }

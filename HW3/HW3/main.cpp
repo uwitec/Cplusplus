@@ -1,4 +1,15 @@
+/*
+ * CSS501 HW #3: String Reversal
+ * Wilbert Lim Sible
+ * wsible@uw.edu
+ * 2018/10/21 - fall quarter
+ *
+ * Main function that demonstrates the member functions of the linked list. 
+ *
+ */
+
 #include <iostream>
+#include <string>
 #include "node.h"
 #include "list.h"
 using namespace std;
@@ -8,15 +19,16 @@ int main()
 {
 	List sentence;
 
-	sentence.add("The");
-	sentence.add("quick");
-	sentence.add("brown");
-	sentence.add("fox");
-	sentence.add("jumps");
-	sentence.add("over");
+	sentence.add("O");
+	sentence.add("say");
+	sentence.add("can");
+	sentence.add("you");
+	sentence.add("see");
+	sentence.add("by");
 	sentence.add("the");
-	sentence.add("lazy");
-	sentence.add("dog");
+	sentence.add("dawn's");
+	sentence.add("early");
+	sentence.add("light");
 
 	cout << "---List---" << endl;
 	sentence.printList();
@@ -30,6 +42,7 @@ int main()
 	cout << "\n---Deep Copy---" << endl;
 	List deepCopy(sentence);
 	deepCopy.printList();
+
 
 	system("pause");
 
